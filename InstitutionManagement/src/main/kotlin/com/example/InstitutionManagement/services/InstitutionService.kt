@@ -1,6 +1,6 @@
-package com.example.InstitutionManagement.viewmodel
+package com.example.InstitutionManagement.services
 
-import Institution
+import com.example.InstitutionManagement.model.Institution
 import com.example.InstitutionManagement.repository.InstitutionRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 
 @Service
-class InstitutionViewModel(val repository: InstitutionRepository) {
+class InstitutionService(val repository: InstitutionRepository) {
     fun getAllInstitutions(): List<Institution> = repository.findAll()
 
     fun getInstitutionByID(id: Long): Institution = repository.findByIdOrNull(id)

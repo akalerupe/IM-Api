@@ -1,13 +1,13 @@
 package com.example.InstitutionManagement.controller
 
-import Institution
-import com.example.InstitutionManagement.viewmodel.InstitutionViewModel
+import com.example.InstitutionManagement.model.Institution
+import com.example.InstitutionManagement.services.InstitutionService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RequestMapping("api/v1/institution")
 @RestController
-class InstitutionController(val viewModel: InstitutionViewModel) {
+class InstitutionController(val viewModel: InstitutionService) {
     @GetMapping
     fun getAllInstitutions()=viewModel.getAllInstitutions()
 
