@@ -7,22 +7,23 @@ import org.springframework.web.bind.annotation.*
 
 @RequestMapping("api/v1/institution")
 @RestController
-class InstitutionController(val viewModel: InstitutionService) {
+class InstitutionController(val service: InstitutionService) {
     @GetMapping
-    fun getAllInstitutions()=viewModel.getAllInstitutions()
+    fun getAllInstitutions()=service.getAllInstitutions()
 
     @GetMapping("/{id}")
-    fun getInstitutionById(@PathVariable id: Long) = viewModel.getInstitutionByID(id)
+    fun getInstitutionById(@PathVariable id: Long) = service.getInstitutionByID(id)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun savePlayer(@RequestBody institution: Institution): Institution = viewModel.createInstitution(institution)
+    fun createInstitution(@RequestBody institution: Institution): Institution = service.createInstitution(institution)
+
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun deleteinstitution(@PathVariable id: Long) = viewModel.deleteInstitution(id)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    fun deleteinstitution(@PathVariable id: Long) = service.deleteInstitution(id)
 
     @PutMapping("/{id}")
-    fun updatePlayer(@PathVariable id: Long, @RequestBody institution: Institution) = viewModel.editInstitution(id, institution)
+    fun updatePlayer(@PathVariable id: Long, @RequestBody institution: Institution) = service.editInstitution(id, institution)
 
 }
